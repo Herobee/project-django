@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid">
+    <h1>Item List</h1>
+    <button class="btn" onclick="location.href='{% url 'item:item-add'%}'">
+            Add Item <span class="badge badge-primary">+</span>
+    </button>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>idx</th>
+                <th>category</th>
+                <th>name</th>
+                <th>content</th>
+                <th>price</th>
+                <th>read_count</th>
+                <th>reg_date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for instance in object_list %}
+                <tr>
+                    <td>{{instance.item_idx}}</td>
+                    <td>{{instance.item_category}}</td>
+                    <td>{{instance.item_name}}</td>
+                    <td>{{instance.item_content}}</td>
+                    <td>{{instance.item_price}}</td>
+                    <td>{{instance.read_count}}</td>
+                    <td>{{instance.reg_date}}</td>
+                    <td><a href="{{ instance.get_absolute_url }}">More..</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+</div>
+{% endblock  %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+{% comment %} <div class="container">
+    <h1>sign up!</h1>
+    <div class="form-group">
+        <form action="" method="POST"> {% csrf_token %}
+                <label for="usr_id">User ID</label>
+                <input type="text" name="usr_id" id="usr_id" class="form-control" placeholder="Enter ID">
+                <br>
+                <label for="usr_pwd">User Password</label>
+                <input type="password" name="usr_pwd" id="usr_pwd" class="form-control" placeholder="Enter Password">
+                <br>
+                <label for="usr_name">User Name</label>
+                <input type="text" name="usr_name" id="usr_name" class="form-control" placeholder="Enter Name">
+                <br>
+                <label for="usr_email">User E-mail</label>
+                <input type="text" name="usr_email" id="usr_email" class="form-control" placeholder="Enter E-mail">
+                <br>
+                <label for="usr_phone">User Phone Number</label>
+                <input type="password" name="usr_phone" id="usr_phone" class="form-control" placeholder="Enter Phone Number">
+                <br>
+                <input type="submit" class="btn btn-primary" vlaue="sign up">
+        </form>
+    </div>
+</div> {% endcomment %}
+<div class="container">
+    <h1>sign up!</h1>
+    <form action="" method="POST"> {% csrf_token %}
+        {% comment %} {% for i in form %}
+            {{ i }} <br>
+        {% endfor %} {% endcomment %}
+        {{form.as_p}}
+        <input type="submit" class="btn btn-primary" value="sign up">
+    </form>
+</div>
+{% endblock  %}
