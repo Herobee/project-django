@@ -16,15 +16,16 @@ class ItemObjectMixin(object):
         return obj
 
 class ItemListView(View):
-    template_name = "item_list.html"
+    template_name = "item/item_list.html"
     queryset = Item.objects.all().order_by('item_idx')
     def get_queryset(self):
         return self.queryset
     def get(self, request, *args, **kwargs):
         context = {"object_list": self.get_queryset()}
         return render(request, self.template_name, context)
+
 class ItemAddView(View):
-    template_name = "item_add.html"
+    template_name = "item/item_add.html"
     def get(self, request, *args, **kwargs):
         #GET
         form = ItemModelForm
@@ -41,7 +42,7 @@ class ItemAddView(View):
         return render(request, self.template_name, context)
 
 class ItemDetailView(ItemObjectMixin, View):
-    template_name = "item_detail.html"
+    template_name = "item/item_detail.html"
     def get(self, request, item_idx=None, *args, **kwargs):
         #GET Method
         context = {'object': self.get_object()}
@@ -49,7 +50,7 @@ class ItemDetailView(ItemObjectMixin, View):
         return render(request, self.template_name, context)
 
 class ItemBuyView(ItemObjectMixin, View):
-    template_name = "item_buy.html"
+    template_name = "item/item_buy.html"
     def get(self, request, item_idx=None, *args, **kwargs):
         #GET Method
         context = {'object': self.get_object()}

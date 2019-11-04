@@ -15,7 +15,7 @@ class UserObjectMixin(object):
         return obj
 
 class SignupView(View):
-    template_name = "signup.html"
+    template_name = "user/signup.html"
     def get(self, request, *args, **kwargs):
         #GET Method
         form = UserModelForm()
@@ -30,7 +30,9 @@ class SignupView(View):
             return redirect('home')
         context = {"form" : form}
         return render(request, self.template_name, context)
-
+class LoginView(View):
+    template_name = "user/login.html"
+    pass
 class UserListView(View):
     template_name = "user_list.html"
     queryset = User.objects.all().order_by('-reg_date')
@@ -41,7 +43,7 @@ class UserListView(View):
         return render(request, self.template_name, context)
 
 class UserDetailView(UserObjectMixin, View):
-    template_name = "user_detail.html"
+    template_name = "user/user_detail.html"
     def get(self, request, usr_id=None, *args, **kwargs):
         #GET Method
         context = {'object': self.get_object()}
