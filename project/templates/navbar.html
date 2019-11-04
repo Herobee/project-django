@@ -6,9 +6,16 @@
         <li>
             <a href="{% url 'user:signup' %}">Sign Up</a>
         </li>
+        {% if user.is_authenticated %}
+        <li>
+            Hi {{ user.username }}
+            <a href="{% url 'user:logout' %}">Log Out</a>
+        </li>
+        {% else %}
         <li>
             <a href="{% url 'user:login' %}">Log In</a>
         </li>
+        {% endif %}
         <li>
             <a href="{% url 'user:user-list' %}">User List</a>
         </li>

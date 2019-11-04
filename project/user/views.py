@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.views import View
 
 from .models import User
-from .forms import UserModelForm
+from .forms import UserModelForm, LoginForm
 
 class UserObjectMixin(object):
     model = User
@@ -32,9 +32,25 @@ class SignupView(View):
         return render(request, self.template_name, context)
 class LoginView(View):
     template_name = "user/login.html"
+    def get(self, request, *args, **kwargs):
+        # GET METHOD
+        form = LoginForm()
+        context = {"form" : form}
+        return render(request, self.template_name, context)
+    def post(self, request, *args, **kwargs):
+        # POST
+        form = LoginForm(request.POST)
+        usr_id = request.POST['usr_id']
+        usr_pwd = request.POST['usr_pwd']
+        print(usr_id)
+        print(usr_pwd)
+        return render(request, self.template_name)
+        
+class LogoutView(View):
     pass
+
 class UserListView(View):
-    template_name = "user_list.html"
+    template_name = "user/user_list.html"
     queryset = User.objects.all().order_by('-reg_date')
     def get_queryset(self):
         return self.queryset
