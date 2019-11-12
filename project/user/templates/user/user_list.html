@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container">
 {% for instance in  object_list %}
-    <p><a href='{{ instance.get_absolute_url }}'>{{ instance.usr_id}}</a> -{{ instance.usr_pwd }}</p>
+    <p><a href='{{ instance.get_absolute_url }}'>{{ instance.usr_id}}</a> -{{ instance.password }}</p>
     <hr>
 {% endfor %}
 </div>

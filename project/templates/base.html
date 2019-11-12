@@ -5,8 +5,14 @@
     <meta charset="UTF-8">
     <title>Private Django Project</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{% static 'js/item.js'%}"></script>
+
 </head>
 <body>
+    <div class="text-center">
+    <img src="{% static 'img/logo.png' %}" class="">
+    </div>
     {% include 'navbar.html' %}
     {% block content %}
         replace me

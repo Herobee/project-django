@@ -3,27 +3,27 @@ from django.urls import reverse
 from django.contrib.auth.models import(BaseUserManager, AbstractBaseUser, PermissionsMixin)
 
 # Create your models here.
-class User(models.Model):
-    usr_id = models.CharField(max_length=45, primary_key=True)
-    usr_pwd = models.CharField(max_length=45, null=False)
-    usr_name = models.CharField(max_length=45, null=False, unique=True)
-    usr_email = models.CharField(max_length=45, null=False)
-    usr_phone = models.CharField(max_length=45, null=False)
-    reg_date = models.DateTimeField(auto_now_add=True)
-    updated_date = models.DateTimeField(auto_now=True)
+# class User(models.Model):
+#     usr_id = models.CharField(max_length=45, primary_key=True)
+#     usr_pwd = models.CharField(max_length=45, null=False)
+#     usr_name = models.CharField(max_length=45, null=False, unique=True)
+#     usr_email = models.CharField(max_length=45, null=False)
+#     usr_phone = models.CharField(max_length=45, null=False)
+#     reg_date = models.DateTimeField(auto_now_add=True)
+#     updated_date = models.DateTimeField(auto_now=True)
     
-    def __str__(self):
-        return self.usr_id
+#     def __str__(self):
+#         return self.usr_id
     
-    def get_absolute_url(self):
-        return reverse("user:user-detail", kwargs={"usr_id": self.usr_id})
+#     def get_absolute_url(self):
+#         return reverse("user:user-detail", kwargs={"usr_id": self.usr_id})
 
 class MyUserManager(BaseUserManager):
     use_in_migrations = True
 
     def create_user(self, usr_id, usr_name, usr_email, usr_phone, password=None):
         if not usr_id:
-            raise ValueError('must have user ID!!')
+            raise ValueError('must have User ID!!')
         user = self.model(
             usr_id = usr_id,
             usr_name = usr_name,
@@ -65,3 +65,12 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'usr_id'
     REQUIRED_FIELDS = ['usr_name','usr_email','usr_phone']
+
+    class Meta:
+        ordering = ['-reg_date',]
+
+    def __str__(self):
+        return self.usr_id
+    
+    def get_absolute_url(self):
+        return reverse("user:user-detail", kwargs={"usr_id": self.usr_id})

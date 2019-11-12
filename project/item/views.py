@@ -1,8 +1,10 @@
 from django.shortcuts import get_object_or_404, render, redirect
+from django.http import HttpResponse
 from django.views import View
+from django.contrib import messages
 
 from .models import Item
-from .forms import ItemModelForm
+from .forms import ItemModelForm, ItemAddForm
 
 # Create your views here.
 class ItemObjectMixin(object):
@@ -17,27 +19,40 @@ class ItemObjectMixin(object):
 
 class ItemListView(View):
     template_name = "item/item_list.html"
-    queryset = Item.objects.all().order_by('item_idx')
+    queryset = Item.objects.all().order_by('-item_idx')
     def get_queryset(self):
         return self.queryset
     def get(self, request, *args, **kwargs):
-        context = {"object_list": self.get_queryset()}
+        print(len(self.get_queryset()))
+        context = {
+                    "object_list": self.get_queryset(), 
+                    'range': range(5),
+                    'object_len': len(self.get_queryset()),
+                    'loop' : range(len(self.get_queryset()))
+                    }
+        print(context)
+        self.queryset = ''
         return render(request, self.template_name, context)
 
 class ItemAddView(View):
     template_name = "item/item_add.html"
     def get(self, request, *args, **kwargs):
         #GET
-        form = ItemModelForm
+        print('ItemAddView',request.user.is_anonymous)
+        if request.user.is_anonymous:
+            print('anonymous User')
+            return redirect('user:login')
+        form = ItemAddForm
         context = {"form" : form}
         return render(request, self.template_name, context)
     def post(self, request, *args, **kwargs):
         #POST
-        form = ItemModelForm(request.POST)
+        form = ItemAddForm(request.POST)
         if form.is_valid():
-            form.save()
-            form = ItemModelForm()
-            return redirect('home')
+            form.save(usr_name = request.user)
+            form = ItemAddForm()
+            print('success!!!')
+            return redirect('item-list')
         context = {"form": form}
         return render(request, self.template_name, context)
 

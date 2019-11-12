@@ -1,27 +1,29 @@
 <nav>
-    <ul class='list-unstyled'>
-        <li>
+    <ul class='list-unstyled list-inline text-center mb-5'>
+        <li class="list-inline-item">
             <a href="{% url 'home' %}">Home</a>
         </li>
-        <li>
-            <a href="{% url 'user:signup' %}">Sign Up</a>
-        </li>
         {% if user.is_authenticated %}
-        <li>
-            Hi {{ user.username }}
+        <li class="list-inline-item">
+            Hi {{ user.usr_id }}
             <a href="{% url 'user:logout' %}">Log Out</a>
         </li>
         {% else %}
-        <li>
+        <li class="list-inline-item">
             <a href="{% url 'user:login' %}">Log In</a>
         </li>
+        <li class="list-inline-item">
+            <a href="{% url 'user:signup' %}">Sign Up</a>
+        </li>
         {% endif %}
-        <li>
+        <li class="list-inline-item">
             <a href="{% url 'user:user-list' %}">User List</a>
         </li>
-        <li>
+        <li class="list-inline-item">
             <a href="{% url 'item:item-list'%}">Item</a>
         </li>
-        <li>Menu3</li>
+        <li class="list-inline-item">
+            Menu3
+        </li>
     </ul>
 </nav>

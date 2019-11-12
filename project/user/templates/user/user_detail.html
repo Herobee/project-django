@@ -2,12 +2,11 @@
 {% extends "base.html" %}
 
 {% block content %}
--{{ object.usr_id}} <hr>
--{{ object.usr_pwd }} <hr>
--{{ object.usr_name }} <hr>
--{{ object.usr_email }} <hr>
--{{ object.reg_date }} <hr>
--{{ object.updated_date }} <hr>
+ID - {{ object.usr_id}} <hr>
+NAME - {{ object.usr_name }} <hr>
+EMAIL - {{ object.usr_email }} <hr>
+REG_DATE - {{ object.reg_date }} <hr>
+UPDATED_DATE - {{ object.updated_date }} <hr>
 {% comment %} <p><a href="{% url 'user:user-update' object.usr_id %}">Update</a></p> {% endcomment %}
 {% comment %} <p><a href="{% url 'user:user-delete' object.usr_id %}">Delete</a></p> {% endcomment %}
 

@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 
+from user.models import MyUser
+
 # Create your models here.
 class Item(models.Model):
     ITEM_CATEGORIES = (
@@ -16,7 +18,8 @@ class Item(models.Model):
     item_name = models.CharField(max_length=45, null=False)
     item_content = models.TextField(blank = False, null=False)
     item_price = models.IntegerField(null=False)
-    item_quantity = models.IntegerField(default=0)
+    item_quantity = models.IntegerField(default=1)
+    usr_name = models.ForeignKey(MyUser, default='', on_delete=models.CASCADE)
     on_sale = models.BooleanField(default=True)
     read_count = models.IntegerField(null=False, default=0)
     reg_date = models.DateTimeField(auto_now_add=True)

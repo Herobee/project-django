@@ -1,8 +1,11 @@
 {% extends "base.html" %}
+{% comment %} {% static 'js/item.js' %} {% endcomment %}
+{% comment %} <script src="js/item.js"></script> {% endcomment %}
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid px-0">
     <h1>Item List</h1>
-    <button class="btn" onclick="location.href='{% url 'item:item-add'%}'">
+
+    <button class="btn item-add-btn" onclick="location.href='{% url 'item:item-add'%}'">
             Add Item <span class="badge badge-primary">+</span>
     </button>
     <table class="table">
@@ -13,9 +16,11 @@
                 <th>name</th>
                 <th>content</th>
                 <th>price</th>
-                <th>read_count</th>
+                <th>user</th>
+                <th>quantity</th>
+                <th>read</th>
                 <th>reg_date</th>
-                <th></th>
+                <th>+</th>
             </tr>
         </thead>
         <tbody>
@@ -26,6 +31,8 @@
                     <td>{{instance.item_name}}</td>
                     <td>{{instance.item_content}}</td>
                     <td>{{instance.item_price}}</td>
+                    <td>{{instance.usr_name}}</td>
+                    <td>{{instance.item_quantity}}</td>
                     <td>{{instance.read_count}}</td>
                     <td>{{instance.reg_date}}</td>
                     <td><a href="{{ instance.get_absolute_url }}">More..</a></td>
@@ -34,6 +41,17 @@
         </tbody>
     </table>
 
-
+    {% comment %} <ul class="list-inline">
+        <li class="list-inline-item">
+            <ul class="list-unstyled">
+                <li>
+                </li>
+                <li>
+                </li>
+                <li>
+                </li>
+            </ul>
+        </li>
+    </ul> {% endcomment %}
 </div>
 {% endblock  %}
