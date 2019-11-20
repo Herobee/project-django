@@ -4,12 +4,13 @@
     <h2>Item Detail View</h2>
     <div class="my-3">
         <a name="buy_btn" id="buy_btn" class="btn btn-primary" href="{% url 'item:item-buy' object.item_idx %}" role="button">Buy Now</a>
-        <a name="add_basket_btn" id="add_basket_btn" class="btn btn-primary" href="{% url 'item:item-add-basket' object.item_idx %}" role="button">Add Basket</a>
+        <a name="add_basket_btn" id="add_cart_btn" class="btn btn-primary" href="{% url 'item:item-add-basket' object.item_idx %}" role="button">Add Cart</a>
     </div>
     item_idx -{{ object.item_idx}} <hr>
     item_category-{{ object.item_category }} <hr>
     item_name-{{ object.item_name }} <hr>
     item_content-{{ object.item_content }} <hr>
+    item_quantity-{{ object.item_quantity }} <hr>
     on_sale-{{ object.on_sale }} <hr>
     read_count-{{ object.read_count }} <hr>
     reg_date-{{ object.reg_date }} <hr>

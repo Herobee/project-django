@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% comment %} {% static 'js/item.js' %} {% endcomment %}
-{% comment %} <script src="js/item.js"></script> {% endcomment %}
+{% load staticfiles %}
 {% block content %}
+<script src="{% static 'js/item.js'%}"></script>
 <div class="container-fluid px-0">
     <h1>Item List</h1>
 
-    <button class="btn item-add-btn" onclick="location.href='{% url 'item:item-add'%}'">
+    <button class="btn btn-outline-success item-add-btn" onclick="location.href='{% url 'item:item-add'%}'">
             Add Item <span class="badge badge-primary">+</span>
     </button>
     <table class="table">
@@ -41,17 +41,30 @@
         </tbody>
     </table>
 
-    {% comment %} <ul class="list-inline">
-        <li class="list-inline-item">
-            <ul class="list-unstyled">
-                <li>
-                </li>
-                <li>
-                </li>
-                <li>
-                </li>
-            </ul>
-        </li>
-    </ul> {% endcomment %}
+    
+    <ul class="list-inline row">
+        {% for a in object_list %}
+            <li class="list-inline-item col-md-2">
+                {{forloop.counter}}
+                <ul class="list-unstyled border border-dark">
+                    <li>
+                        Name : {{a.item_name}}
+                    </li>
+                    <li>
+                        Category : {{a.item_category}}
+                    </li>
+                    <li>
+                        Price : {{a.item_price}}
+                    </li>
+                    <li>
+                        Quantity : {{a.item_quantity}}
+                    </li>
+                    <li class="text-center">
+                        <a href="{{ a.get_absolute_url }}" class="btn btn-outline-primary">More..</a>
+                    </li>
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
 </div>
 {% endblock  %}

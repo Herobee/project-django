@@ -3,10 +3,18 @@
         <li class="list-inline-item">
             <a href="{% url 'home' %}">Home</a>
         </li>
+        <li class="list-inline-item">
+            <a href="{% url 'user:user-list' %}">User List</a>
+        </li>
+        <li class="list-inline-item">
+            <a href="{% url 'item:item-list'%}">Item</a>
+        </li>
         {% if user.is_authenticated %}
         <li class="list-inline-item">
-            Hi {{ user.usr_id }}
             <a href="{% url 'user:logout' %}">Log Out</a>
+        </li>
+        <li class="list-inline-item">
+            <a href="{% url 'cart:cart-list' %}">Cart</a>
         </li>
         {% else %}
         <li class="list-inline-item">
@@ -16,14 +24,6 @@
             <a href="{% url 'user:signup' %}">Sign Up</a>
         </li>
         {% endif %}
-        <li class="list-inline-item">
-            <a href="{% url 'user:user-list' %}">User List</a>
-        </li>
-        <li class="list-inline-item">
-            <a href="{% url 'item:item-list'%}">Item</a>
-        </li>
-        <li class="list-inline-item">
-            Menu3
-        </li>
+        
     </ul>
 </nav>

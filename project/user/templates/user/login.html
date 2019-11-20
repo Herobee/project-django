@@ -2,6 +2,10 @@
 {% block content %}
 <div class="container">
     <h1>Login</h1>
+    {% if form.errors %}
+        <p>Plz Check your ID or pwd</p>
+    {% else %}
+    {% endif %}
     <form action="" method="POST">{% csrf_token %}
         {% comment %} Username : 
         <br>
@@ -11,7 +15,8 @@
         <br>
         <input name="password" type="password">
         <br><br> {% endcomment %}
-        {{form.as_p}}
+
+        {{form.as_p}}{% csrf_token %}
         <input type="submit" class="btn btn-primary" value="Log in">
     </form>
 </div>

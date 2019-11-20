@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-
+from django.conf import settings
 from user.models import MyUser
 
 # Create your models here.
@@ -30,3 +30,10 @@ class Item(models.Model):
     def get_absolute_url(self):
         return reverse("item:item-detail", kwargs={"item_idx": self.item_idx})
     
+# class Basket(models.Model):
+#     usr_id = models.ForeignKey(MyUser, default='', on_delete=models.CASCADE)
+#     item_idx = models.ForeignKey(Item, default='', on_delete=models.CASCADE)
+#     item_count = models.IntegerField(null = False, default=1)
+#     add_date = models.DateTimeField(auto_now_add=True)
+#     def __str(self):
+#         return self.usr_id,self.item_idx

@@ -32,7 +32,7 @@ class SignupView(View):
         if form.is_valid():
             form.save()
             form = MyUserCreateForm()
-            return redirect('login')
+            return redirect('user:login')
         context = {"form" : form}
         return render(request, self.template_name, context)
 
@@ -49,9 +49,6 @@ class LoginView(View):
         usr_id = request.POST['usr_id']
         password = request.POST['password']
         user = authenticate(usr_id=usr_id, password=password)
-        print(usr_id)
-        print(password)
-        print(user)
         if user is not None:
             if user.is_active:
                 print('login!!!!!!!!!!!!!')
@@ -59,7 +56,7 @@ class LoginView(View):
                 return redirect('home')
         else:
             messages.warning(request, 'Try Again')
-            return HttpResponse('Try Again to Log in..')
+            return HttpResponse('')
         return render(request, self.template_name)
         
 class LogoutView(View):
@@ -68,6 +65,11 @@ class LogoutView(View):
         logout(request)
         return redirect('home')
 
+class DeleteUser(View):
+    def get(self, request, *args, **kwargs):
+        #GET
+        request.user.delete()
+        return redirect('home')
 
 class UserListView(View):
     template_name = "user/user_list.html"
@@ -75,8 +77,8 @@ class UserListView(View):
     def get_queryset(self):
         return self.queryset
     def get(self, request, *args, **kwargs):
+        self.queryset = self.queryset.filter()
         context = {"object_list" : self.get_queryset()}
-        self.queryset = ''
         return render(request, self.template_name, context)
 
 class UserDetailView(UserObjectMixin, View):
@@ -84,5 +86,4 @@ class UserDetailView(UserObjectMixin, View):
     def get(self, request, usr_id=None, *args, **kwargs):
         #GET Method
         context = {'object': self.get_object()}
-        print(context)
         return render(request, self.template_name, context)

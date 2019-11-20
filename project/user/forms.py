@@ -1,28 +1,6 @@
 from django import forms
 from .models import MyUser, MyUserManager
 
-# class UserModelForm(forms.ModelForm):
-#     class Meta:
-#         model = MyUser
-#         fields = [
-#             'usr_id',
-#             'password',
-#             'usr_name',
-#             'usr_email',
-#             'usr_phone',
-#         ]
-        
-#         def clean_usr_id(self):
-#             usr_id = self.cleaned_data.get('usr_id')
-#             return usr_id
-
-# class LoginForm(forms.ModelForm):
-#     class Meta:
-#         model = MyUser
-#         fields = [
-#             'usr_id',
-#             'password',
-#         ]
 class MyUserModelForm(forms.ModelForm):
     class Meta:
         model = MyUser

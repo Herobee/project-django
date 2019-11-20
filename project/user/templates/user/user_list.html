@@ -6,5 +6,8 @@
     <p><a href='{{ instance.get_absolute_url }}'>{{ instance.usr_id}}</a> -{{ instance.password }}</p>
     <hr>
 {% endfor %}
+<button class="list-inline-item btn btn-danger">
+    <a href="{% url 'user:delete-user' %}" class="text-white">Delete</a>
+</button>
 </div>
 {% endblock %}
