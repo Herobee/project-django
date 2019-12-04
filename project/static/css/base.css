@@ -1,0 +1,26 @@
+@media(min-width:768px) {
+    .nav-bar {
+        display: block;
+    }
+    .sub-nav-bar {
+        display: none;
+    }
+}
+
+@media(max-width:768px) {
+    .nav-bar {
+        display: none;
+    }
+    .sub-nav-bar {
+        display: block;
+    }
+}
+
+.sub-nav-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* height: 100%; */
+    padding: 0 2rem;
+    /* background: #bebebe6c; */
+}

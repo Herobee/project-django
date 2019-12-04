@@ -1,18 +1,56 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{%static 'css/item.css' %}"/>
+<script src="{% static 'js/item.js'%}"></script>
 <div class="container">
     <h2>Item Detail View</h2>
-    <div class="my-3">
-        <a name="buy_btn" id="buy_btn" class="btn btn-primary" href="{% url 'item:item-buy' object.item_idx %}" role="button">Buy Now</a>
-        <a name="add_basket_btn" id="add_cart_btn" class="btn btn-primary" href="{% url 'item:item-add-basket' object.item_idx %}" role="button">Add Cart</a>
+    <div class="item-view row my-0">
+        <div class="item-preview col-6">
+            <div class="preview-img-box">
+                <img src="{%static 'img/file.png'%}" class="item-preview-img">
+            </div>
+        </div>
+        <div class="col-6 py-2">
+            <p class="item-name">{{ object.item_name }}</p>
+            <ul class="item-detail-view list-unstyled">
+                <p class="title-info">Product Info</p>
+                <li>
+                    <p>item_category-{{ object.item_category }}</p>
+                </li>
+                <li>
+                    <p>item_content-{{ object.item_content }}</p>
+                </li>
+                <li>
+                    <p>item_quantity-{{ object.item_quantity }}</p>
+                </li>
+                <li>
+                    <p>on_sale-{{ object.on_sale }}</p>
+                </li>
+                <li>
+                    <p>read_count-{{ object.read_count }}</p>
+                </li>
+            </ul>
+            <ul class="item-detail-view list-unstyled">
+                <p class="title-info">Price Info</p>
+                <li>
+                    <p >item_price-{{object.item_price}}</p>
+                    <input id="item_price"name="item_price" type="hidden" value="{{object.item_price}}"/>
+                </li>
+            </ul>
+            <div class="">
+                <form action="" method="POST" class="form-group" id="frm">
+                    <p>qunatity - <input type="number" class="form-control text-right" value="1" id="item_count" name="item_count" min="1"/></p>
+                    <p>Price - <input type="text" class="border-0 text-right" value="{{object.item_price}}" id="total_price" name="total_price" readonly/></p>
+                    <div class="row mx-0">
+                        <a name="buy_btn" id="buy_btn" class="btn btn-outline-warning col-6 my-1" href="{% url 'item:item-buy' object.item_idx %}" role="button">Buy Now</a>
+                        <a name="add_cart_btn" id="add_cart_btn" class="btn btn-outline-warning col-6 my-1" href="{% url 'item:item-add-basket' object.item_idx %}" role="button">Add Cart</a>
+                        <a name="test_btn" id="test_btn" class="btn btn-outline-warning col-6 my-1" href="{% url 'item:test' object.item_idx %}" role="button">TEST</a>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    item_idx -{{ object.item_idx}} <hr>
-    item_category-{{ object.item_category }} <hr>
-    item_name-{{ object.item_name }} <hr>
-    item_content-{{ object.item_content }} <hr>
-    item_quantity-{{ object.item_quantity }} <hr>
-    on_sale-{{ object.on_sale }} <hr>
-    read_count-{{ object.read_count }} <hr>
-    reg_date-{{ object.reg_date }} <hr>
 </div>
-{% endblock  %}
+{% endblock %}
+    

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid">
+    <h1>Board List</h1>
+    <button class="btn btn-outline-success item-add-btn" onclick="location.href='{% url 'board:board-add'%}'">
+            Add Baord <span class="badge badge-primary">+</span>
+    </button>
+    <div class="">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th><button class="btn btn-outline-dark"onclick="location.href='{% url 'board:board-list'%}'">IDX</button></th>
+                    <th><button class="btn btn-outline-danger"onclick="location.href='{% url 'board:board-list' 'board_title'%}'">TITLE</button></th>
+                    <th>CONTENT</th>
+                    <th><button class="btn btn-outline-info"onclick="location.href='{% url 'board:board-list' 'usr_name_id'%}'">USER</button></th>
+                    <th><button class="btn btn-outline-warning"onclick="location.href='{% url 'board:board-list' '-read_count'%}'">READ</button></th>
+                    <th>MORE</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for instance in board_list %}
+                <tr>
+                    <td scope="row">{{instance.board_idx}}</td>
+                    <td>{{instance.board_title}}</td>
+                    <td>{{instance.board_content}}</td>
+                    <td>{{instance.usr_name_id}}</td>
+                    <td>{{instance.read_count}}</td>
+                    <td><a href="{{ instance.get_absolute_url }}" class="btn btn-outline-primary">More..</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="paging text-center">
+            <ul class="list-inline">
+                {% for p in page_num %}
+                    {% comment %} <li class="list-inline-item">{{p}}</li> {% endcomment %}
+                    <li class="list-inline-item">
+                        <button class="btn btn-outline-warning"onclick="location.href='{% url 'board:board-list'%}'">{{p}}</button>
+                        {% comment %} {{p}} {% endcomment %}
+                    </li>
+                    
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock content %}

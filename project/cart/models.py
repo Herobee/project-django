@@ -8,7 +8,8 @@ from item.models import Item
 class Cart(models.Model):
     item_idx = models.ForeignKey(Item, default='', on_delete=models.CASCADE)
     usr_id = models.ForeignKey(MyUser, default='', on_delete=models.CASCADE)
-    item_count = models.IntegerField(null = False, default=1)
+    item_count = models.IntegerField(null=False, default=1)
+    # item_price = models.IntegerField(null=False, default=1)
     add_date = models.DateTimeField(auto_now_add=True)
     
     class Meta:

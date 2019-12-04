@@ -1,0 +1,51 @@
+/* Item Detail View */
+
+.preview-img-box {
+    text-align: center;
+    width: auto;
+    height: 500px;
+    white-space: nowrap;
+    font: 0/0 a;
+    padding: 1rem 0;
+}
+
+.preview-img-box:before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+}
+
+.preview-img-box>img {
+    max-width: 100%;
+    max-height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.item-name {
+    text-align: center;
+    font-size: 2rem;
+    border-bottom: solid 2.5px #000000;
+}
+
+.item-detail-view li {
+    border-bottom: solid 1px #8a9af5;
+    padding: .8rem 0;
+}
+
+.item-detail-view li>p {
+    margin-bottom: 0;
+}
+
+.title-info {
+    font-size: 1.5rem;
+    border-bottom: 1.5px solid #ff7d7d;
+}
+
+ul li {
+    text-align: right;
+}
+
+
+/* Order View */

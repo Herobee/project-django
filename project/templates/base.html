@@ -5,18 +5,25 @@
     <meta charset="UTF-8">
     <title>Private Django Project</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    {% comment %} <script src="{% static 'js/item.js'%}"></script> {% endcomment %}
-
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
 </head>
 <body>
     <div class="text-center">
-    <img src="{% static 'img/logo.png' %}" class="">
+        <img src="{% static 'img/logo.png' %}" class="">
     </div>
+    {% include 'search_list.html' %}
     {% if user.is_authenticated %}
     <h4 class="text-center">Hi, {{ user.usr_id }}</h4>
     {% endif %}
     {% include 'navbar.html' %}
+    {% include 'navbar_sub.html' %}
     {% block content %}
         replace me
     {% endblock %}

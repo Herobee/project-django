@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container">
 {% for instance in  object_list %}
-    <p><a href='{{ instance.get_absolute_url }}'>{{ instance.usr_id}}</a> -{{ instance.password }}</p>
+    <p><a href='{{ instance.get_absolute_url }}'>{{ instance.usr_id}}</a> -</p>
     <hr>
 {% endfor %}
 <button class="list-inline-item btn btn-danger">

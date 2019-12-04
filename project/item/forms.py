@@ -75,5 +75,4 @@ class ItemAddForm(forms.ModelForm):
         post = super().save(commit=False)
         post.usr_name = kwargs.get('usr_name',None)
         post.save()
-        print('save!!')
         pass

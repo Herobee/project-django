@@ -4,48 +4,15 @@
 <script src="{% static 'js/item.js'%}"></script>
 <div class="container-fluid px-0">
     <h1>Item List</h1>
-
     <button class="btn btn-outline-success item-add-btn" onclick="location.href='{% url 'item:item-add'%}'">
             Add Item <span class="badge badge-primary">+</span>
     </button>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>idx</th>
-                <th>category</th>
-                <th>name</th>
-                <th>content</th>
-                <th>price</th>
-                <th>user</th>
-                <th>quantity</th>
-                <th>read</th>
-                <th>reg_date</th>
-                <th>+</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for instance in object_list %}
-                <tr>
-                    <td>{{instance.item_idx}}</td>
-                    <td>{{instance.item_category}}</td>
-                    <td>{{instance.item_name}}</td>
-                    <td>{{instance.item_content}}</td>
-                    <td>{{instance.item_price}}</td>
-                    <td>{{instance.usr_name}}</td>
-                    <td>{{instance.item_quantity}}</td>
-                    <td>{{instance.read_count}}</td>
-                    <td>{{instance.reg_date}}</td>
-                    <td><a href="{{ instance.get_absolute_url }}">More..</a></td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    
-    <ul class="list-inline row">
+    <button class="btn btn-outline-danger">BUTTON 1</button>
+    <button class="btn btn-outline-warning">BUTTON 2</button>
+    <button class="btn btn-outline-secondary">BUTTON 3</button>
+    <div class="text-center row mx-0">
         {% for a in object_list %}
-            <li class="list-inline-item col-md-2">
-                {{forloop.counter}}
+            <div class="col-md-2">
                 <ul class="list-unstyled border border-dark">
                     <li>
                         Name : {{a.item_name}}
@@ -63,8 +30,13 @@
                         <a href="{{ a.get_absolute_url }}" class="btn btn-outline-primary">More..</a>
                     </li>
                 </ul>
-            </li>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
+    <div class="container-fluid justify-content-center text-center">
+        {% for p in page %}
+            {{p}}
+        {% endfor %}
+    </div>
 </div>
 {% endblock  %}

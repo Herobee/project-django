@@ -1,5 +1,7 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block content %}
+<script src="{% static 'js/item.js'%}"></script>
 <div class="container-fluid">
     <h2>Item Buy View</h2>
     <table class="table text-center">
@@ -16,32 +18,34 @@
         <tbody>
             {% for instance in object_list %}
             <tr>
-                <td><input type="checkbox" name="item-check" value="{{instance.id}}"></td>
+                <td><input type="checkbox" name="item-check" id="item-check" value="{{instance.id}}" checked></td>
                 <td>{{instance.item_count}}</td>
                 <td>{{instance.item_idx_id}}</td>
                 <td>{{instance.usr_id_id}}</td>
                 <td>{{instance.add_date}}</td>
-                <td><button class="btn item-add-btn btn-warning" onclick="location.href='{% url 'item:item-detail' instance.item_idx_id%}'">More..</button></td>
+                <td><button class="btn btn-warning" onclick="location.href='{% url 'item:item-detail' instance.item_idx_id%}'">More..</button></td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
     <hr><hr><hr>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>1</th>
-                <th>2</th>
-                <th>3</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td scope="row">1</td>
-                <td>2</td>
-                <td>3</td>
-            </tr>
-        </tbody>
-    </table>
+    <ul class="list-unstyled">
+        <li>
+            <p>order quantity - ....
+                
+            </p>
+        </li>
+        <li>
+            <p>total price - ....</p>
+        </li>
+        <li>
+            <p></p>
+        </li>
+    </ul>
+    <input type="text" name="total-price" id="total-price" value="">
+    <button type="button" name="order-btn" id="order-btn" class="btn btn-warning btn-block order-btn">Order Now!</button>
 </div>
-{% endblock %}
+{% endblock content %}
+{% comment %} {% block script %}
+    <script src="{% static 'js/item.js'%}"></script>
+{% endblock script %} {% endcomment %}

@@ -27,6 +27,14 @@ class ItemObjectMixin(object):
         if item_idx is not None:
             obj = get_object_or_404(Item, item_idx=item_idx)
         return obj
+    def get_count(self):
+        item_count = self.kwargs.get('item_count')
+        return item_count
+
+class ItemCategoryChoice(object):
+    model = Item
+    lookup = 'item_idx'
+    
 
 class ItemListView(View):
     template_name = "item/item_list.html"
@@ -34,11 +42,19 @@ class ItemListView(View):
     def get_queryset(self):
         return self.queryset
     def get(self, request):
+        page = 1
         self.queryset = self.queryset.filter()
         context = {
             "object_list": self.get_queryset(),
         }
+        print(len(context["object_list"]))
+        l = len(context["object_list"])
+        if l / 12 > 1:
+            page += 1
+        context.update({"page":range(1,page+1)})
+        
         return render(request, self.template_name, context)
+
 
 class ItemAddView(View):
     template_name = "item/item_add.html"
@@ -46,7 +62,6 @@ class ItemAddView(View):
         # GET
         print('ItemAddView', request.user.is_anonymous)
         if request.user.is_anonymous:
-            print('anonymous User')
             return redirect('user:login')
         form = ItemAddForm
         context = {"form": form}
@@ -70,21 +85,18 @@ class ItemDetailView(ItemObjectMixin, View):
 
     def get_queryset(self):
         return self.qs
+
     def get(self, request, item_idx=None, *args, **kwargs):
         # GET Method
-        self.qs = self.qs.filter(item_idx=self.get_idx()).update(read_count=F('read_count')+1)
-        print(self.get_queryset())
-        print(self.get_idx())
+        self.qs = self.qs.filter(item_idx=self.get_idx()).update(
+            read_count=F('read_count')+1)
         context = {'object': self.get_object()}
-        print(context)
-        self.qs = ''
-        print(item_idx)
         return render(request, self.template_name, context)
-
 
 class ItemBuyView(ItemObjectMixin, View):
     template_name = "item/item_buy.html"
     queryset = Cart.objects.all()
+
     def get_queryset(self):
         return self.queryset
     def get(self, request, item_idx=None, *args, **kwargs):
@@ -95,10 +107,21 @@ class ItemBuyView(ItemObjectMixin, View):
         context = {'object_list': self.get_queryset()}
         return render(request, self.template_name, context)
 
-
 class ItemAddCart(ItemObjectMixin, View):
-    def get(self, request,item_idx=None, *args, **kwargs):
-        context = {'object': self.get_object()}
+
+    def get(self, request, item_idx=None, *args, **kwargs):
+        context = {'object': self.get_object(), 'item_count':self.get_count()}
+        print(context)
+        
         form = CartAddForm()
         form.save(usr_id=request.user, item_idx=self.get_object())
         return redirect('cart:cart-list')
+
+class TestAction(ItemObjectMixin, View):
+    template_name = "item/item_detail.html"
+    def get(self, request, item_idx=None,item_count=None, *args, **kwargs):
+        print(request)
+        print(item_idx)
+        print(item_count)
+        print(kwargs)
+        return render(request, self.template_name)

@@ -1,9 +1,7 @@
 {% extends "base.html" %}
-{% load staticfiles %}
 {% block content %}
-<script src="{% static 'js/item.js'%}"></script>
 <div class="container">
-    <h2>Add Item</h2>
+    <h2>Add Board</h2>
     <form action="" method="POST">{% csrf_token %}
         {{form.as_p}}
         <input type="submit" class="btn btn-primary" value="Add..">

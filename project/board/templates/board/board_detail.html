@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Board Detail View</h2>
+<div class="container-fluid text-center">
+    <div>
+        TITLE - {{object.board_title}}
+    </div>
+    <div>
+        CONTENT - {{object.board_content}}
+    </div>
+    <div>
+        READ COUNT - {{object.read_count}}
+    </div>
+    <div>
+        REG DATE - {{object.reg_date}}
+    </div>
+    <div>
+        USER - {{object.usr_name_id}}
+    </div>
+</div>
+{% endblock content %}
