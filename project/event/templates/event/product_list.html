@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="container-fluid">
+    {% for p in product %}
+        <h3>{{p.product_idx}}</h3>
+        {{p.product_name}}<br>
+
+        {% if p.product_img %}
+            path : {{p.product_img.path}}<br>
+            url : {{p.product_img.url}}<br>
+            <img src="{{p.get_image_url}}" alt="..." class="image-responsive" height="100px", width="100px">
+            <img src="{{p.product_img.url}}" alt="..." class="image-responsive" height="100px", width="100px">
+        {% endif %}
+        <button class="btn btn-outline-success" onclick="location.href='{% url 'event:product-detail' p.pk %}'">
+                More
+        </button>
+        <hr>
+    {% endfor %}
+</div>
+
+{% endblock content %}

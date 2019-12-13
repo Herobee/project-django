@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{%static 'css/evnet.css' %}"/>
+<script src="{% static 'js/event.js'%}"></script>
+
+<div class="container-fluid">
+    <form action='', method='post', enctype='multipart/form-data'>
+    {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </talbe>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock content %}

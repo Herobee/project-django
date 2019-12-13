@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Product Detail</h2>
+    <ul class="list-unstyled">
+        <li>{{object.product_idx}}</li>
+        <li>{{object.product_name}}</li>
+        <li>{{object.product_img.url}}</li>
+        <li><img src="{{object.product_img.url}}" alt=""></li>
+        <li>{{object.product_like}}</li>
+        <li>{{object.usr_id}}</li>
+    </ul>
+{% endblock content %}

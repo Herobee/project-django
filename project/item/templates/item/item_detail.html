@@ -42,11 +42,6 @@
                 <form action="" method="POST" class="form-group" id="frm">
                     <p>qunatity - <input type="number" class="form-control text-right" value="1" id="item_count" name="item_count" min="1"/></p>
                     <p>Price - <input type="text" class="border-0 text-right" value="{{object.item_price}}" id="total_price" name="total_price" readonly/></p>
-                    <div class="row mx-0">
-                        <a name="buy_btn" id="buy_btn" class="btn btn-outline-warning col-6 my-1" href="{% url 'item:item-buy' object.item_idx %}" role="button">Buy Now</a>
-                        <a name="add_cart_btn" id="add_cart_btn" class="btn btn-outline-warning col-6 my-1" href="{% url 'item:item-add-basket' object.item_idx %}" role="button">Add Cart</a>
-                        <a name="test_btn" id="test_btn" class="btn btn-outline-warning col-6 my-1" href="{% url 'item:test' object.item_idx %}" role="button">TEST</a>
-                    </div>
                 </form>
             </div>
         </div>

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{%static 'css/evnet.css' %}"/>
+<script src="{% static 'js/event.js'%}"></script>
+<h1>Event</h1>
+<div class="container-fluid">
+    <h4>Handling Events</h4>
+    <button class="btn btn-outline-info px-4" onclick="location.href='{% url 'event:product-add'%}'">
+            Add
+    </button>
+    <button class="btn btn-outline-secondary px-4" onclick="location.href='{% url 'event:product-list'%}'">
+            Product List
+    </button>
+</div>
+
+{% endblock content %}

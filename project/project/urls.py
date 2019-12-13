@@ -27,9 +27,8 @@ urlpatterns = [
     # own
     path('user/', include('user.urls')),
     path('item/', include('item.urls')),
-    path('cart/', include('cart.urls')),
     path('board/', include('board.urls')),
-
+    path('event/', include('event.urls')),
 ]
 
 if settings.DEBUG:

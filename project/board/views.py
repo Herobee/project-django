@@ -32,16 +32,13 @@ class BoardListView(View):
         return self.queryset
     def get(self, request, **kwargs):
         max_page = math.ceil(self.queryset.count()/8)
-        print(max_page)
         order_by = self.kwargs.get('order')
-        print(order_by)
         p = (1-1)*5
         if not order_by:
-            self.queryset = self.queryset.filter().order_by('-board_idx')[p:8]
+            self.queryset = self.queryset.filter().order_by('-board_idx')[p:p+8]
         else:
-            self.queryset = self.queryset.filter().order_by(order_by)[p:8]
+            self.queryset = self.queryset.filter().order_by(order_by)[p:p+8]
         context = {"board_list": self.get_queryset(),"page_num":range(1, max_page+1)}
-        print(context)
         return render(request, self.template_name, context)
 
 def pageBtn(request):

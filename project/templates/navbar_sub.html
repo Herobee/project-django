@@ -13,9 +13,6 @@
         <li class="">
             <a href="{% url 'user:logout' %}">Log Out</a>
         </li>
-        <li class="">
-            <a href="{% url 'cart:cart-list' %}">Cart</a>
-        </li>
         {% else %}
         <li class="">
             <a href="{% url 'user:login' %}">Log In</a>
@@ -26,6 +23,9 @@
         {% endif %}
         <li class="">
             <a href="{% url 'board:board-list'%}">Board</a>
+        </li>
+        <li class="">
+            <a href="{% url 'event:event-index'%}">Product</a>
         </li>
     </ul>
 </nav>

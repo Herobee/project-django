@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -47,8 +48,8 @@ INSTALLED_APPS = [
     # own Apps
     'user',
     'item',
-    'cart',
     'board',
+    'event',
 ]
 
 MIDDLEWARE = [
@@ -138,6 +139,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+# Media files (Images[User], pdf, etc..)
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = '/media/' # always insert "/" 
 
 # IP for debug toolbar
 INTERNAL_IPS = ('127.0.0.1',)
